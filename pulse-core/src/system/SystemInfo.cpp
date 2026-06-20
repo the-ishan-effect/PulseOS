@@ -5,14 +5,22 @@
 namespace pulse
 {
 
-std::string SystemInfo::getHostname() const
+SystemSnapshot SystemInfo::collect() const
 {
-    char hostname[256];
+    SystemSnapshot snapshot;
 
-    if(gethostname(hostname, sizeof(hostname)) == 0)
-        return hostname;
+    char hostname[256]{};
 
-    return "Unknown";
+    if (gethostname(hostname, sizeof(hostname)) == 0)
+    {
+        snapshot.hostname = hostname;
+    }
+    else
+    {
+        snapshot.hostname = "Unknown";
+    }
+
+    return snapshot;
 }
 
 }

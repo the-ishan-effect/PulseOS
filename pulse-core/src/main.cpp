@@ -6,12 +6,14 @@ int main()
 {
     pulse::SystemInfo system;
 
+    const auto snapshot = system.collect();
+
     std::cout << "=============================\n";
-    std::cout << " PulseOS v0.1.0\n";
+    std::cout << " PulseOS v0.2.0\n";
     std::cout << "=============================\n\n";
 
     std::cout << "Hostname : "
-              << system.getHostname()
+              << snapshot.hostname
               << '\n';
 
     return 0;
