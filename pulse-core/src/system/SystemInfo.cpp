@@ -1,5 +1,6 @@
 #include "pulse/system/SystemInfo.hpp"
 #include "pulse/common/FileReader.hpp"
+#include "pulse/common/KeyValueParser.hpp"
 #include <sys/utsname.h>
 #include <unistd.h>
 
@@ -25,23 +26,21 @@ try
     const std::string osRelease =
         FileReader::read("/etc/os-release");
 
-    const std::string key = "PRETTY_NAME=\"";
+    auto document =
+        KeyValueParser::parse(osRelease);
 
-    const auto pos = osRelease.find(key);
+    snapshot.osName =
+        document.get("PRETTY_NAME");
 
-    if (pos != std::string::npos)
+    // Remove surrounding quotes if present
+    if (!snapshot.osName.empty() &&
+        snapshot.osName.front() == '"' &&
+        snapshot.osName.back() == '"')
     {
-        const auto start = pos + key.length();
-
-        const auto end =
-            osRelease.find('"', start);
-
-        if (end != std::string::npos)
-        {
-            snapshot.osName =
-                osRelease.substr(start,
-                                 end - start);
-        }
+        snapshot.osName =
+            snapshot.osName.substr(
+                1,
+                snapshot.osName.size() - 2);
     }
 }
 catch (...)

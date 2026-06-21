@@ -20,6 +20,6 @@ int main()
               << '\n';
     std::cout << "Kernel    : "
               << snapshot.kernelVersion
-              << '\n';         
+              << '\n';      
     return 0;
 }
