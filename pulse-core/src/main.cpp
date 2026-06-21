@@ -9,7 +9,7 @@ int main()
     const auto snapshot = system.collect();
 
     std::cout << "=============================\n";
-    std::cout << " PulseOS v0.2.0\n";
+    std::cout << " PulseOS v0.2.2\n";
     std::cout << "=============================\n\n";
 
     std::cout << "Hostname : "
@@ -18,5 +18,8 @@ int main()
     std::cout << "OS        : "
               << snapshot.osName
               << '\n';
+    std::cout << "Kernel    : "
+              << snapshot.kernelVersion
+              << '\n';         
     return 0;
 }

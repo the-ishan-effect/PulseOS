@@ -1,5 +1,6 @@
 #include "pulse/system/SystemInfo.hpp"
 #include "pulse/common/FileReader.hpp"
+#include <sys/utsname.h>
 #include <unistd.h>
 
 namespace pulse
@@ -46,6 +47,16 @@ try
 catch (...)
 {
     snapshot.osName = "Unknown";
+}
+struct utsname kernelInfo{};
+
+if (uname(&kernelInfo) == 0)
+{
+    snapshot.kernelVersion = kernelInfo.release;
+}
+else
+{
+    snapshot.kernelVersion = "Unknown";
 }
     return snapshot;
 }
