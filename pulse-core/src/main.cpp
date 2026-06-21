@@ -15,6 +15,8 @@ int main()
     std::cout << "Hostname : "
               << snapshot.hostname
               << '\n';
-
+    std::cout << "OS        : "
+              << snapshot.osName
+              << '\n';
     return 0;
 }
