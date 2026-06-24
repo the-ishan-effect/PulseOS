@@ -1,5 +1,6 @@
 #include "pulse/system/SystemInfo.hpp"
 #include "pulse/system/CPUInfo.hpp"
+#include "pulse/system/MemoryInfo.hpp"
 
 #include "pulse/common/FileReader.hpp"
 #include "pulse/common/KeyValueParser.hpp"
@@ -69,7 +70,25 @@ snapshot.cpuModel =
 
 snapshot.logicalCPUs =
     cpuSnapshot.logicalThreads;
-    return snapshot;
+
+MemoryInfo memoryInfo;
+
+const auto memorySnapshot =
+    memoryInfo.collect();
+
+snapshot.totalMemoryMB =
+    memorySnapshot.totalMemoryMB;
+
+snapshot.availableMemoryMB =
+    memorySnapshot.availableMemoryMB;
+
+snapshot.usedMemoryMB =
+    memorySnapshot.usedMemoryMB;
+
+snapshot.memoryUsagePercent =
+    memorySnapshot.usagePercent;
+
+return snapshot;
 }
 
 }

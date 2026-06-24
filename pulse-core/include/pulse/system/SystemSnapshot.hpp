@@ -15,6 +15,10 @@ struct SystemSnapshot
     unsigned int logicalCPUs{};
 
     long totalMemoryMB{};
+    long availableMemoryMB{};
+    long usedMemoryMB{};
+    double memoryUsagePercent{};
+
     double uptimeSeconds{};
 };
 
