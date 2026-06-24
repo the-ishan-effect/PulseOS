@@ -1,4 +1,5 @@
 #include "pulse/common/KeyValueParser.hpp"
+
 #include "pulse/common/StringUtils.hpp"
 
 #include <sstream>
@@ -34,27 +35,25 @@ KeyValueDocument KeyValueParser::parse(
     KeyValueDocument document;
 
     std::istringstream stream(text);
+
     std::string line;
 
     while (std::getline(stream, line))
     {
-        if (line.empty())
-        {
-            continue;
-        }
-
-        auto position = line.find(separator);
+        const auto position = line.find(separator);
 
         if (position == std::string::npos)
         {
             continue;
         }
 
-        std::string key = line.substr(0, position);
-        std::string value = line.substr(position + 1);
+        const auto key =
+            StringUtils::trim(
+                line.substr(0, position));
 
-        key = StringUtils::trim(key);
-        value = StringUtils::trim(value);
+        const auto value =
+            StringUtils::trim(
+                line.substr(position + 1));
 
         document.data_[key] = value;
     }
@@ -62,4 +61,4 @@ KeyValueDocument KeyValueParser::parse(
     return document;
 }
 
-} // namespace pulse
+}

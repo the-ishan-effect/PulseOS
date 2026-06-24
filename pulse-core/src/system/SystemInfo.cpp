@@ -1,9 +1,11 @@
 #include "pulse/system/SystemInfo.hpp"
+#include "pulse/system/CPUInfo.hpp"
+
 #include "pulse/common/FileReader.hpp"
 #include "pulse/common/KeyValueParser.hpp"
+
 #include <sys/utsname.h>
 #include <unistd.h>
-
 namespace pulse
 {
 
@@ -57,6 +59,16 @@ else
 {
     snapshot.kernelVersion = "Unknown";
 }
+CPUInfo cpuInfo;
+
+const auto cpuSnapshot =
+    cpuInfo.collect();
+
+snapshot.cpuModel =
+    cpuSnapshot.model;
+
+snapshot.logicalCPUs =
+    cpuSnapshot.logicalThreads;
     return snapshot;
 }
 

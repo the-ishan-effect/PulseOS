@@ -15,11 +15,22 @@ int main()
     std::cout << "Hostname : "
               << snapshot.hostname
               << '\n';
-    std::cout << "OS        : "
+
+    std::cout << "OS       : "
               << snapshot.osName
               << '\n';
-    std::cout << "Kernel    : "
+
+    std::cout << "Kernel   : "
               << snapshot.kernelVersion
-              << '\n';      
+              << '\n';
+
+    std::cout << "CPU      : "
+              << snapshot.cpuModel
+              << '\n';
+
+    std::cout << "Threads  : "
+              << snapshot.logicalCPUs
+              << '\n';
+
     return 0;
 }
