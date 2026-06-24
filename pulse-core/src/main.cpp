@@ -1,7 +1,37 @@
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include "pulse/system/SystemInfo.hpp"
+std::string formatUptime(double uptimeSeconds)
+{
+    const long totalSeconds =
+        static_cast<long>(uptimeSeconds);
 
+    const long days =
+        totalSeconds / 86400;
+
+    const long hours =
+        (totalSeconds % 86400) / 3600;
+
+    const long minutes =
+        (totalSeconds % 3600) / 60;
+
+    std::ostringstream output;
+
+    if (days > 0)
+    {
+        output << days << "d ";
+    }
+
+    if (hours > 0 || days > 0)
+    {
+        output << hours << "h ";
+    }
+
+    output << minutes << "m";
+
+    return output.str();
+}
 int main()
 {
     pulse::SystemInfo system;
@@ -44,6 +74,9 @@ std::cout << "Usage    : "
           << snapshot.memoryUsagePercent
           << '%'
           << '\n';
-
+std::cout << "Uptime   : "
+          << formatUptime(
+                 snapshot.uptimeSeconds)
+          << '\n';
     return 0;
 }

@@ -3,6 +3,7 @@ add_executable(pulseos
     src/system/SystemInfo.cpp
     src/system/CPUInfo.cpp
     src/system/MemoryInfo.cpp
+    src/system/UptimeInfo.cpp
     src/common/FileReader.cpp
     src/common/StringUtils.cpp
     src/common/KeyValueParser.cpp

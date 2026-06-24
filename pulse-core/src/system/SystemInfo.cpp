@@ -1,7 +1,7 @@
 #include "pulse/system/SystemInfo.hpp"
 #include "pulse/system/CPUInfo.hpp"
 #include "pulse/system/MemoryInfo.hpp"
-
+#include "pulse/system/UptimeInfo.hpp"
 #include "pulse/common/FileReader.hpp"
 #include "pulse/common/KeyValueParser.hpp"
 
@@ -87,7 +87,13 @@ snapshot.usedMemoryMB =
 
 snapshot.memoryUsagePercent =
     memorySnapshot.usagePercent;
+UptimeInfo uptimeInfo;
 
+const auto uptimeSnapshot =
+    uptimeInfo.collect();
+
+snapshot.uptimeSeconds =
+    uptimeSnapshot.uptimeSeconds;
 return snapshot;
 }
 
