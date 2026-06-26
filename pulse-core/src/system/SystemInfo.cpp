@@ -4,6 +4,7 @@
 #include "pulse/system/UptimeInfo.hpp"
 #include "pulse/common/FileReader.hpp"
 #include "pulse/common/KeyValueParser.hpp"
+#include "pulse/system/DiskInfo.hpp"
 #include "pulse/system/CPULoadInfo.hpp"
 #include <sys/utsname.h>
 #include <unistd.h>
@@ -93,6 +94,22 @@ snapshot.usedMemoryMB =
 
 snapshot.memoryUsagePercent =
     memorySnapshot.usagePercent;
+DiskInfo diskInfo;
+
+const auto diskSnapshot =
+    diskInfo.collect();
+
+snapshot.totalDiskGB =
+    diskSnapshot.totalSpaceGB;
+
+snapshot.usedDiskGB =
+    diskSnapshot.usedSpaceGB;
+
+snapshot.freeDiskGB =
+    diskSnapshot.freeSpaceGB;
+
+snapshot.diskUsagePercent =
+    diskSnapshot.usagePercent;
 UptimeInfo uptimeInfo;
 
 const auto uptimeSnapshot =

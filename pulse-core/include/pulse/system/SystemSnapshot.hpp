@@ -18,7 +18,10 @@ struct SystemSnapshot
     long availableMemoryMB{};
     long usedMemoryMB{};
     double memoryUsagePercent{};
-
+    long totalDiskGB{};
+    long usedDiskGB{};
+    long freeDiskGB{};
+    double diskUsagePercent{};
     double uptimeSeconds{};
 };
 
