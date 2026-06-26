@@ -1,31 +1,31 @@
 # PulseOS
 
-> **A modular Linux system monitoring tool built with modern C++, POSIX APIs, and CMake.**
+> **A modular Linux system monitoring tool built with modern C++, Linux, POSIX APIs, and CMake.**
 
-PulseOS is a lightweight and extensible command-line system monitoring tool that provides real-time insights into Linux system resources. It interacts directly with Linux kernel interfaces and POSIX APIs to collect information about the operating system, hardware, CPU, memory, disk, and system uptime without relying on external utilities.
+PulseOS is a lightweight and extensible command-line application that provides real-time insights into Linux system resources. It interacts directly with the Linux `/proc` filesystem and POSIX APIs to collect information about the operating system, hardware, CPU, memory, disk, and system uptime without relying on external utilities.
 
-The project is designed with a modular architecture where each subsystem is responsible for collecting a specific category of system information, while the presentation layer remains completely independent of the data collection layer. This separation makes PulseOS easy to maintain, extend, and test.
-
----
-
-# Features
-
-* Operating System Detection
-* Kernel Version Detection
-* Hostname Detection
-* CPU Model & Logical Thread Information
-* Real-Time CPU Utilization Monitoring
-* Memory Usage Monitoring
-* Disk Usage Monitoring
-* System Uptime Monitoring
-* Modular Console Renderer
-* Reusable Parsing & File Utilities
-* Modular CMake Build System
-* Feature-Based Git Workflow
+The project follows a modular architecture where each subsystem is responsible for collecting a specific category of system information, while the presentation layer remains completely independent of the data collection layer. This separation improves maintainability, scalability, and ease of extension.
 
 ---
 
-# Architecture
+## Features
+
+- Operating System Detection
+- Kernel Version Detection
+- Hostname Detection
+- CPU Model & Logical Thread Information
+- Real-Time CPU Utilization Monitoring
+- Memory Usage Monitoring
+- Disk Usage Monitoring
+- System Uptime Monitoring
+- Modular Console Renderer
+- Reusable Parsing & File Utilities
+- Feature-Based Git Workflow
+- CMake Build System
+
+---
+
+## Architecture
 
 ```
                     PulseOS
@@ -40,14 +40,14 @@ The project is designed with a modular architecture where each subsystem is resp
                          ▲
                          │
                     SystemInfo
-      ┌───────────┬──────────┬──────────┬──────────┐
+      ┌───────────┬──────────┬──────────┬──────────┬────────────┐
       │           │          │          │          │
    CPUInfo   CPULoadInfo  MemoryInfo  DiskInfo  UptimeInfo
 ```
 
 ---
 
-# Project Structure
+## Project Structure
 
 ```
 PulseOS/
@@ -69,46 +69,63 @@ PulseOS/
 ├── architecture/
 ├── screenshots/
 ├── CMakeLists.txt
+├── LICENSE
 └── README.md
 ```
 
 ---
 
-# Technologies
+## Technologies Used
 
-* Modern C++ (C++17)
-* Linux
-* POSIX APIs
-* CMake
-* Git & GitHub
+- **Language:** Modern C++ (C++17)
+- **Platform:** Linux
+- **System APIs:** POSIX
+- **Build System:** CMake
+- **Version Control:** Git & GitHub
 
 ---
 
-# Build Instructions
+## Building PulseOS
+
+### Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/PulseOS.git
+git clone https://github.com/the-ishan-effect/PulseOS.git
+```
 
+### Navigate to the project
+
+```bash
 cd PulseOS
+```
 
+### Create a build directory
+
+```bash
 mkdir build
-
 cd build
+```
 
+### Configure and build
+
+```bash
 cmake ..
-
 cmake --build .
+```
 
+### Run
+
+```bash
 ./pulse-core/pulseos
 ```
 
 ---
 
-# Sample Output
+## Sample Output
 
 ```
 ╔══════════════════════════════════════════════════════════════╗
-║                        PulseOS v0.4.0                        ║
+║                        PulseOS v0.4.0                       ║
 ╚══════════════════════════════════════════════════════════════╝
 
 SYSTEM
@@ -140,24 +157,46 @@ Running       15h 50m
 
 ---
 
-# Roadmap
+## Roadmap
 
-* [x] Operating System Detection
-* [x] Kernel Version Detection
-* [x] CPU Information
-* [x] CPU Utilization
-* [x] Memory Monitoring
-* [x] Disk Monitoring
-* [x] Uptime Monitoring
-* [x] Console Renderer
-* [ ] Network Monitoring
-* [ ] Watch Mode
-* [ ] JSON Export
-* [ ] Unit Testing
-* [ ] Continuous Integration
+- [x] Operating System Detection
+- [x] Kernel Version Detection
+- [x] CPU Information
+- [x] CPU Utilization Monitoring
+- [x] Memory Monitoring
+- [x] Disk Monitoring
+- [x] System Uptime
+- [x] Console Renderer
+- [ ] Network Monitoring
+- [ ] Watch Mode
+- [ ] JSON Export
+- [ ] Unit Testing
+- [ ] GitHub Actions CI
+- [ ] Release v1.0
 
 ---
 
-# License
+## Design Principles
 
-This project is licensed under the MIT License.
+PulseOS is built around a modular architecture that separates data collection from presentation.
+
+Each system component is responsible for collecting a single category of information, while the rendering layer formats and displays the collected data. This design improves maintainability, enables easier testing, and simplifies future feature additions.
+
+---
+
+## Future Improvements
+
+- Network Interface Monitoring
+- Process Information
+- Battery Monitoring
+- JSON Export
+- Watch Mode (`--watch`)
+- Configuration File Support
+- Unit & Integration Tests
+- Continuous Integration
+
+---
+
+## License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
