@@ -13,7 +13,7 @@ struct SystemSnapshot
 
     std::string cpuModel;
     unsigned int logicalCPUs{};
-
+    double cpuUsagePercent{};
     long totalMemoryMB{};
     long availableMemoryMB{};
     long usedMemoryMB{};

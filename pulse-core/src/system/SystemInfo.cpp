@@ -4,7 +4,7 @@
 #include "pulse/system/UptimeInfo.hpp"
 #include "pulse/common/FileReader.hpp"
 #include "pulse/common/KeyValueParser.hpp"
-
+#include "pulse/system/CPULoadInfo.hpp"
 #include <sys/utsname.h>
 #include <unistd.h>
 namespace pulse
@@ -70,7 +70,13 @@ snapshot.cpuModel =
 
 snapshot.logicalCPUs =
     cpuSnapshot.logicalThreads;
+CPULoadInfo cpuLoadInfo;
 
+const auto cpuLoadSnapshot =
+    cpuLoadInfo.collect();
+
+snapshot.cpuUsagePercent =
+    cpuLoadSnapshot.usagePercent;
 MemoryInfo memoryInfo;
 
 const auto memorySnapshot =
